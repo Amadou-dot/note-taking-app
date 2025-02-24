@@ -4,6 +4,8 @@ import { Metadata, Viewport } from 'next';
 
 import { Providers } from './providers';
 
+import Header from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
 import { fontSans } from '@/config/fonts';
 import { siteConfig } from '@/config/site';
 
@@ -35,15 +37,17 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-slate-800 font-sans antialiased',
+          'min-h-screen bg-background font-sans antialiased',
           fontSans.variable,
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <div className='relative flex h-screen flex-col'>
-            <main className='container mx-auto max-w-7xl flex-grow px-6 pt-16'>
-              {children}
-            </main>
+          <div className='relative h-screen'>
+            <div className='h-screen lg:grid lg:grid-cols-[250px_1fr] lg:grid-rows-[100px_1fr]'>
+              <Sidebar className='hidden lg:col-start-1 lg:row-span-2 lg:block' />
+              <Header className='lg:col-start-2 lg:row-span-1 lg:block' />
+              <main className='col-start-2 row-start-2'> {children}</main>
+            </div>
           </div>
         </Providers>
       </body>

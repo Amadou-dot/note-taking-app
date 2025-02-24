@@ -10,7 +10,7 @@ export default function page() {
       <div className='flex w-full max-w-[700px] flex-col items-center rounded-lg bg-slate-900 px-4'>
         {/* Welcome messages */}
         <div className='mb-4 mt-12 flex flex-col items-center gap-4'>
-          <Logo size={34} />
+          <Logo/>
           <div className='text-2xl'>Welcome to Note</div>
           <p className='text-slate-500'>Please log in to continue</p>
         </div>

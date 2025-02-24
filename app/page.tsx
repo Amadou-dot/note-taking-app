@@ -1,8 +1,5 @@
+import { redirect } from 'next/navigation';
 
-export default function page() {
-  return (
-    <div>
-      <p className='text-4xl text-red-400'>Hello world</p>
-    </div>
-  );
+export default function HomeRedirect() {
+  redirect('/all');
 }
