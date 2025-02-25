@@ -32,10 +32,10 @@ export default function Sidebar({ className }: SidebarProps) {
           <Link
             key={item.label}
             className={clsx(
-              'flex w-full items-center p-2 text-lg justify-between',
+              'flex w-full items-center justify-between p-2 text-lg',
               isActive
-                ? 'rounded-md bg-gray-100 font-semibold dark:bg-gray-900'
-                : 'font-light',
+                ? 'rounded-md bg-gray-100 text-blue-500 dark:bg-gray-900'
+                : 't',
             )}
             href={item.href}
           >
@@ -43,7 +43,7 @@ export default function Sidebar({ className }: SidebarProps) {
               {React.createElement(item.icon)}
               <span>{item.label}</span>
             </span>
-            {isActive && <MdOutlineKeyboardArrowRight size={22}/>}
+            {isActive && <MdOutlineKeyboardArrowRight size={22} />}
           </Link>
         );
       })}

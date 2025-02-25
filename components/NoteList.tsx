@@ -1,0 +1,20 @@
+import NoteItem from './NoteItem';
+
+import { Note } from '@/types/Note';
+
+type NoteListProps = {
+  notes: Note[];
+};
+export default function NoteList({ notes }: NoteListProps) {
+  return (
+    <ul
+      className='flex w-full flex-col gap-4 *:border-b dark:*:border-gray-800 *:border-gray-300 last:mb-56'
+      role='listbox'
+      tabIndex={0}
+    >
+      {notes.map((note) => (
+        <NoteItem key={note.id} note={note} />
+      ))}
+    </ul>
+  );
+}

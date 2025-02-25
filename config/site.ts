@@ -4,12 +4,28 @@ import {
   IoPricetagOutline,
   IoSearchOutline,
   IoSettingsOutline,
+  IoTimeOutline,
 } from 'react-icons/io5';
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: 'Notes',
   description: 'Take notes',
+  icons: {
+    home: IoHomeOutline,
+    archive: IoArchiveOutline,
+    search: IoSearchOutline,
+    tag: IoPricetagOutline,
+    settings: IoSettingsOutline,
+    time: IoTimeOutline,
+  },
+  pathTitles: {
+    'all': 'All Notes',
+    'archive': 'Archived Notes',
+    'tags': 'Notes Tagged: ',
+    'search': 'Showing results for: ',
+    'settings': 'Settings',
+  },
   navItems: [
     {
       label: 'All Notes',

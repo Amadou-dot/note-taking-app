@@ -1,10 +1,3 @@
-import Bounded from '@/components/Bounded';
-import MobileNav from '@/components/MobileNav';
-
-export default function page() {
-  return (
-    <Bounded>
-      <MobileNav />
-    </Bounded>
-  );
+export default function search() {
+  return <h1>search page</h1>;
 }

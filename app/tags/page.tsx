@@ -1,10 +1,3 @@
-import Bounded from '@/components/Bounded';
-import MobileNav from '@/components/MobileNav';
-
-export default function page() {
-  return (
-    <Bounded>
-      <MobileNav />
-    </Bounded>
-  );
+export default function tags() {
+  return <h1>tags page</h1>;
 }
