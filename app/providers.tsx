@@ -7,6 +7,8 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 
+import { FontProvider } from '@/contexts/FontContext';
+
 export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
@@ -25,7 +27,9 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
   return (
     <HeroUIProvider navigate={router.push}>
-      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+      <NextThemesProvider {...themeProps}>
+        <FontProvider>{children}</FontProvider>
+      </NextThemesProvider>
     </HeroUIProvider>
   );
 }
