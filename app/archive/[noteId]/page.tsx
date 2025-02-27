@@ -10,7 +10,6 @@ export default async function page({ params }: Props) {
   const note = notes[notes.findIndex((note) => note.id === Number(id))];
 
   if (!note) return <div>That note does not exist</div>;
-  // const created = formatDate(note.created_at);
 
   return <NotesBody note={note} />;
 }

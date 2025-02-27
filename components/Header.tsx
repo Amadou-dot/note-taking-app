@@ -1,23 +1,24 @@
 'use client';
 import { Input } from '@heroui/input';
 import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
+import { usePathname } from 'next/navigation';
 
 import { Logo } from './Logo';
-import { ThemeSwitch } from './theme-switch';
-
-import { siteConfig } from '@/config/site';
-
+import PageTitle from './PageTitle';
+3;
 type HeaderProps = {
   className?: string;
 };
 export default function Header({ className }: HeaderProps) {
   const pathName = usePathname();
-  const pathTitle: string =
-    siteConfig.pathTitles[
-      pathName.split('/')[1] as keyof typeof siteConfig.pathTitles
-    ];
+  let tag: null | string = null;
+
+  // if on the tags page, get the tag from the url (tags/[tag])
+  if (pathName.includes('tags')) {
+    tag = pathName.split('/')[2];
+  }
 
   return (
     <div
@@ -33,7 +34,11 @@ export default function Header({ className }: HeaderProps) {
 
       {/* desktop header */}
       <div className='hidden h-full items-center justify-between lg:flex'>
-        <p className='text-xl font-bold'>{pathTitle}</p>
+        <PageTitle
+          replace={(tag && true) || false}
+          tag={(tag && tag) || undefined}
+          title={(tag && 'Notes Tagged: ') || undefined}
+        />
         <div className='hidden items-center gap-4 lg:flex'>
           <Input
             className='w-72'
@@ -42,12 +47,13 @@ export default function Header({ className }: HeaderProps) {
             startContent={<IoSearchOutline size={20} />}
             variant='faded'
           />
-          <IoSettingsOutline
-            className='cursor-pointer'
-            focusable={true}
-            size={26}
-          />
-          <ThemeSwitch />
+          <Link href='/settings'>
+            <IoSettingsOutline
+              className='cursor-pointer'
+              focusable={true}
+              size={26}
+            />
+          </Link>
         </div>
       </div>
     </div>

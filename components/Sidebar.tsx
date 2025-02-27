@@ -1,11 +1,12 @@
 'use client';
 import clsx from 'clsx';
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 import { Logo } from './Logo';
+import TagsList from './TagsList';
 
 import { siteConfig } from '@/config/site';
 
@@ -26,7 +27,7 @@ export default function Sidebar({ className }: SidebarProps) {
         <Logo height={48} width={48} />
       </div>
       {siteConfig.navItems.map((item) => {
-        const isActive = pathName === item.href;
+        const isActive = pathName.includes(item.href);
 
         return (
           <Link
@@ -47,6 +48,9 @@ export default function Sidebar({ className }: SidebarProps) {
           </Link>
         );
       })}
+      <hr />
+      {/* tags */}
+      <TagsList />
     </div>
   );
 }

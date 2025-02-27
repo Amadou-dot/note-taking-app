@@ -22,8 +22,8 @@ export const siteConfig = {
   pathTitles: {
     'all': 'All Notes',
     'archive': 'Archived Notes',
-    'tags': 'Notes Tagged: ',
-    'search': 'Showing results for: ',
+    'tags': 'Tags',
+    'search': 'Search',
     'settings': 'Settings',
   },
   navItems: [

@@ -8,7 +8,7 @@ type NoteListProps = {
 export default function NoteList({ notes }: NoteListProps) {
   return (
     <ul
-      className='flex w-full flex-col gap-4 *:border-b dark:*:border-gray-800 *:border-gray-300 last:mb-56'
+      className='flex w-full flex-col gap-4 *:border-b *:border-gray-300 last:mb-56 dark:*:border-gray-800'
       role='listbox'
       tabIndex={0}
     >

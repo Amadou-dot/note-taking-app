@@ -12,12 +12,13 @@ export default function NoteItem({ note }: NoteItemProps) {
     day: '2-digit',
     year: 'numeric',
   }).format(note.last_updated);
+  const url = note.isArchived ? `/archive/${note.id}` : `/all/${note.id}`;
 
   return (
     <li aria-label={`Open ${note.title}`}>
       <Link
         className='mb-2 flex h-full w-full flex-col gap-3 rounded-md p-2 hover:bg-slate-200 focus:bg-slate-200 dark:text-slate-400 dark:outline-none dark:hover:bg-slate-900 dark:focus:bg-transparent dark:focus:ring dark:focus:ring-slate-900'
-        href={`/all/${note.id}`}
+        href={url}
         tabIndex={0}
       >
         <span className='text-lg font-bold text-black dark:text-white'>

@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import clsx from 'clsx';
 import { Metadata, Viewport } from 'next';
+import { FaCirclePlus } from 'react-icons/fa6';
 
 import { Providers } from './providers';
 
@@ -40,7 +41,7 @@ export default function RootLayout({
         className={clsx(
           'min-h-screen bg-background font-sans antialiased',
           fontSans.variable,
-          'max-h-screen overflow-hidden'
+          'max-h-screen overflow-hidden',
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
@@ -48,7 +49,13 @@ export default function RootLayout({
             <div className='h-screen lg:grid lg:grid-cols-[250px_1fr] lg:grid-rows-[100px_1fr]'>
               <Sidebar className='hidden lg:col-start-1 lg:row-span-2 lg:block' />
               <Header className='lg:col-start-2 lg:row-span-1 lg:block' />
-              <main className='col-start-2 row-start-2'> {children}
+              <main className='col-start-2 row-start-2'>
+                {children}
+                <FaCirclePlus
+                  className='fixed bottom-24 right-4 cursor-pointer text-white lg:hidden'
+                  color='blue'
+                  size={48}
+                />
                 <MobileNav />
               </main>
             </div>

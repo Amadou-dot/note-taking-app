@@ -5,5 +5,5 @@ type BoundedProps = {
   className?: string;
 };
 export default function Bounded({ children, className }: BoundedProps) {
-  return <div className={clsx('relative', className)}>{children}</div>;
+  return <div className={clsx('relative h-full max-h-screen overflow-hidden', className)}>{children}</div>;
 }
