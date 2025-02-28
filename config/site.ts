@@ -25,6 +25,7 @@ export const siteConfig = {
     'tags': 'Tags',
     'search': 'Search',
     'settings': 'Settings',
+    'create': 'Create Note',
   },
   navItems: [
     {

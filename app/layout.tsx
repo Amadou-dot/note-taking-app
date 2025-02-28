@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Metadata, Viewport } from 'next';
 import { FaCirclePlus } from 'react-icons/fa6';
 import { Tooltip } from '@heroui/tooltip';
+import Link from 'next/link';
 
 import { Providers } from './providers';
 
@@ -52,12 +53,12 @@ export default function RootLayout({
               <Header className='lg:col-start-2 lg:row-span-1 lg:block' />
               <main className='col-start-2 row-start-2'>
                 {children}
-                <Tooltip content='Create a new note' radius='sm'>
-                  <FaCirclePlus
+                <Tooltip content='Create a new note' delay={500} radius='sm'>
+                  <Link href='/create'><FaCirclePlus
                     className='fixed bottom-24 right-4 cursor-pointer text-white lg:hidden'
                     color='blue'
                     size={48}
-                  />
+                  /></Link>
                 </Tooltip>
                 <MobileNav />
               </main>

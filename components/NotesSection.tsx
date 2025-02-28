@@ -2,6 +2,7 @@ import { Alert } from '@heroui/alert';
 import { Button } from '@heroui/button';
 import clsx from 'clsx';
 import { IoAddOutline } from 'react-icons/io5';
+import Link from 'next/link';
 
 import EmptyNotes from './EmptyNotes';
 import NoteList from './NoteList';
@@ -32,11 +33,11 @@ export default function NotesSection({
     >
       {!hideButton && (
         <Button
+          as={Link}
           className='hidden w-full lg:flex'
           color='primary'
-          radius='sm'
-          size='lg'
-          startContent={<IoAddOutline size={22} />}
+          href='/create'
+          radius='sm' size='lg' startContent={<IoAddOutline size={22} />}
         >
           Create New Note
         </Button>
