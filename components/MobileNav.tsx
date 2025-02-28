@@ -13,7 +13,7 @@ export default function MobileNav() {
         <Link
           key={item.label}
           className={
-            pathName.includes(item.href)  ? 'rounded-md bg-blue-300 text-blue-700' : ''
+            pathName?.includes(item.href)  ? 'rounded-md bg-blue-300 text-blue-700' : ''
           }
           href={item.href}
         >

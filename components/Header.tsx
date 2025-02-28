@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
-
+import {Tooltip} from "@heroui/tooltip";
 import { Logo } from './Logo';
 import PageTitle from './PageTitle';
 3;
@@ -16,7 +16,7 @@ export default function Header({ className }: HeaderProps) {
   let tag: null | string = null;
 
   // if on the tags page, get the tag from the url (tags/[tag])
-  if (pathName.includes('tags')) {
+  if (pathName?.includes('tags')) {
     tag = pathName.split('/')[2];
   }
 
@@ -39,7 +39,7 @@ export default function Header({ className }: HeaderProps) {
           tag={(tag && tag) || undefined}
           title={(tag && 'Notes Tagged: ') || undefined}
         />
-        <div className='hidden items-center gap-4 lg:flex'>
+        <div className='hidden items-center gap-10 lg:flex'>
           <Input
             className='w-72'
             placeholder='Search by title, content, or tags'
@@ -47,6 +47,7 @@ export default function Header({ className }: HeaderProps) {
             startContent={<IoSearchOutline size={20} />}
             variant='faded'
           />
+          <Tooltip content='Settings' radius='sm'>
           <Link href='/settings'>
             <IoSettingsOutline
               className='cursor-pointer'
@@ -54,6 +55,7 @@ export default function Header({ className }: HeaderProps) {
               size={26}
             />
           </Link>
+          </Tooltip>
         </div>
       </div>
     </div>

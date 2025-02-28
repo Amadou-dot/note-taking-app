@@ -27,7 +27,7 @@ export default function Sidebar({ className }: SidebarProps) {
         <Logo height={48} width={48} />
       </div>
       {siteConfig.navItems.map((item) => {
-        const isActive = pathName.includes(item.href);
+        const isActive = pathName?.includes(item.href);
 
         return (
           <Link
