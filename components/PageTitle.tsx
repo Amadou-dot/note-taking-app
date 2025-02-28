@@ -27,7 +27,7 @@ export default function PageTitle({
     <>
       <p
         className={clsx(
-          'mt-4 text-2xl font-bold text-gray-600 dark:text-gray-500',
+          'mt-4 text-2xl font-bold text-gray-500 dark:text-gray-400',
           className,
         )}
       >

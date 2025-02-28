@@ -26,7 +26,7 @@ export default function NotesSection({
   return (
     <div
       className={clsx(
-        'flex h-full w-full flex-col border-r border-gray-300 p-4 dark:border-gray-800',
+        'flex h-full w-full flex-col border-r border-gray-300 px-4 dark:border-gray-800',
         className,
       )}
     >

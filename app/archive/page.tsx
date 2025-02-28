@@ -1,18 +1,13 @@
-
 import Bounded from '@/components/Bounded';
 import EmptyNotes from '@/components/EmptyNotes';
 import NotesBody from '@/components/NotesBody';
 import NotesSection from '@/components/NotesSection';
-import PageTitle from '@/components/PageTitle';
 import { notes } from '@/temp/notes';
 
 export default function page() {
   return (
     <Bounded>
-      <div className='px-4 lg:hidden'>
-        <PageTitle />
-        {!notes.length && <EmptyNotes />}
-      </div>
+      <p className='px-4 lg:hidden'>{!notes.length && <EmptyNotes />}</p>
 
       <NotesBody className='col-start-2 hidden lg:block' />
       <NotesSection

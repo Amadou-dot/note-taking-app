@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
 import {Tooltip} from "@heroui/tooltip";
+
 import { Logo } from './Logo';
 import PageTitle from './PageTitle';
 3;
@@ -28,8 +29,13 @@ export default function Header({ className }: HeaderProps) {
       )}
     >
       {/* mobile header */}
-      <div className='flex lg:hidden'>
+      <div className='flex lg:hidden items-center flex-row-reverse justify-between'>
         <Logo />
+        <PageTitle
+          replace={(tag && true) || false}
+          tag={(tag && tag) || undefined}
+          title={(tag && 'Notes Tagged: ') || undefined}
+        />
       </div>
 
       {/* desktop header */}
@@ -43,11 +49,11 @@ export default function Header({ className }: HeaderProps) {
           <Input
             className='w-72'
             placeholder='Search by title, content, or tags'
-            radius='md'
+            radius='sm'
             startContent={<IoSearchOutline size={20} />}
             variant='faded'
           />
-          <Tooltip content='Settings' radius='sm'>
+          <Tooltip content='Settings' delay={500} radius='sm'>
           <Link href='/settings'>
             <IoSettingsOutline
               className='cursor-pointer'

@@ -1,9 +1,8 @@
+import { Button } from '@heroui/button';
 import Link from 'next/link';
 import { IoArrowBack } from 'react-icons/io5';
-import { Button } from '@heroui/button';
 
 import NotesSection from '@/components/NotesSection';
-import PageTitle from '@/components/PageTitle';
 import { notes } from '@/temp/notes';
 
 type Props = {
@@ -31,7 +30,6 @@ export default async function page({ params }: Props) {
         >
           Go back
         </Button>
-        <PageTitle replace tag={tag} title='Notes Tagged: ' />
       </div>
       <NotesSection
         hideButton
