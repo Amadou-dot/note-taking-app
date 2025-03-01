@@ -1,19 +1,23 @@
 'use client';
-import { Input } from '@heroui/input';
 import { Tooltip } from '@heroui/tooltip';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { IoSettingsOutline } from 'react-icons/io5';
 
 import MobileNav from './MobileNav';
 import PageTitle from './PageTitle';
+import SearchBar from './SearchBar';
 
 type HeaderProps = {
   className?: string;
 };
 export default function Header({ className }: HeaderProps) {
   const pathName = usePathname();
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
+
   let tag: null | string = null;
 
   // if on the tags page, get the tag from the url (tags/[tag])
@@ -21,8 +25,22 @@ export default function Header({ className }: HeaderProps) {
     tag = pathName.split('/')[2];
   }
 
+  const handleSearch = (value: string) => {
+    setSearchQuery(value);
+    
+    // Optional: Add debounce here for better performance
+    if (value.trim().length > 0) {
+      // Navigate to the search page with the query
+      router.push(`/search?q=${encodeURIComponent(value.trim())}`);
+    }
+    if (!value.trim().length) {
+      // Navigate to the search page with the query
+      router.push(`/search`);
+    }
+  };
+
   return (
-    <div className={clsx('lg:border-b dark:border-gray-800 px-4', className)}>
+    <div className={clsx('px-4 dark:border-gray-800 lg:border-b', className)}>
       {/* mobile header */}
       <MobileNav />
 
@@ -34,12 +52,9 @@ export default function Header({ className }: HeaderProps) {
           title={(tag && 'Notes Tagged: ') || undefined}
         />
         <div className='hidden items-center gap-10 lg:flex'>
-          <Input
-            className='w-72'
-            placeholder='Search by title, content, or tags'
-            radius='sm'
-            startContent={<IoSearchOutline size={20} />}
-            variant='faded'
+          <SearchBar 
+            value={searchQuery} 
+            onValueChange={handleSearch} 
           />
           <Tooltip content='Settings' delay={500} radius='sm'>
             <Link href='/settings'>

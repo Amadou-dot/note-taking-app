@@ -39,6 +39,7 @@ export default function MobileNav() {
         />
         <NavbarBrand>
           <PageTitle
+            className='mb-4'
             replace={(tag && true) || false}
             tag={(tag && tag) || undefined}
             title={(tag && 'Notes Tagged: ') || undefined}

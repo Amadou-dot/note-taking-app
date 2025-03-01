@@ -1,3 +1,9 @@
+import SearchResults from '@/components/SearchResults';
+
 export default function search() {
-  return <h1>search page</h1>;
+  return (
+    <div className='px-4'>
+      <SearchResults />
+    </div>
+  );
 }

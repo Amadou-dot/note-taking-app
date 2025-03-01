@@ -1,6 +1,6 @@
 'use client';
 import clsx from 'clsx';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoBulbOutline } from 'react-icons/io5';
 
 import MobileNoteNav from './MobileNoteNav';
@@ -9,8 +9,12 @@ import TagSelector from './TagSelector';
 
 import { siteConfig } from '@/config/site';
 import { formatDate } from '@/helpers/formateDate';
+import {
+  handleArchiveNote,
+  handleDeleteNote,
+  handleSaveNote,
+} from '@/helpers/noteActionHandlers';
 import { Note } from '@/types/Note';
-import { handleArchiveNote, handleDeleteNote, handleSaveNote } from '@/helpers/noteActionHandlers';
 
 type NotesBodyProps = {
   className?: string;
@@ -79,17 +83,9 @@ export default function NotesBody({
           onSave={() => handleSaveNote(note)}
         />
       )}
-      <div
-        className={clsx(
-          'flex h-full flex-col gap-4 px-4',
-          '', 
-          '',
-          className,
-        )}
-      >
+      <div className={clsx('flex h-full flex-col gap-4 px-4', className)}>
         {!note && (
           <div className='flex flex-col gap-6 pt-4'>
-           
             {!readOnly && (
               <>
                 <input
@@ -116,7 +112,7 @@ export default function NotesBody({
           </div>
         )}
         {note && (
-          <div className='lg:grid lg:grid-cols-[1fr_200px] pt-24 lg:pt-4'>
+          <div className='pt-4 lg:grid lg:grid-cols-[1fr_200px]'>
             <div className='flex h-full flex-col gap-4 px-4'>
               {readOnly ? (
                 <h1 className='text-4xl font-bold'>{title}</h1>

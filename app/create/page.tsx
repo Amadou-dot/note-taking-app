@@ -30,7 +30,7 @@ export default function Create() {
   return (
     <Bounded className='px-4'>
       <div>
-        <nav className='mt-4 flex items-center justify-between lg:hidden'>
+        <nav className='mt-4 flex items-center justify-between '>
           <Button
             as={Link}
             href='/'

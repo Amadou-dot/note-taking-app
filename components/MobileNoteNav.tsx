@@ -23,7 +23,7 @@ export default function MobileNoteNav({
   const backUrl = isArchived ? '/archive' : '/all';
 
   return (
-    <nav className='fixed left-0 right-0 top-20 z-50 flex items-center justify-between border-b border-gray-300 p-4 dark:border-gray-800 lg:hidden'>
+    <nav className='flex items-center justify-between border-b border-gray-300 p-4 dark:border-gray-800 lg:hidden'>
       <div className='flex items-center gap-4'>
         <Link
           className='flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-900'
