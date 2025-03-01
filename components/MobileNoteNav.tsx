@@ -55,14 +55,9 @@ export default function MobileNoteNav({
           variant='light'
           onPress={onDelete}
         />
-        <div className='flex gap-2'>
-          <Button radius='sm' variant='light'>
-            <Link href={backUrl}>Cancel</Link>
-          </Button>
-          <Button color='primary' radius='sm' variant='light' onPress={onSave}>
-            Save Note
-          </Button>
-        </div>
+        <Button color='primary' radius='sm' variant='light' onPress={onSave}>
+          Save Note
+        </Button>
       </div>
     </nav>
   );

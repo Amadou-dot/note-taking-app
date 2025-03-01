@@ -1,14 +1,14 @@
 'use client';
 import { Input } from '@heroui/input';
+import { Tooltip } from '@heroui/tooltip';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
-import {Tooltip} from "@heroui/tooltip";
+import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
 
-import { Logo } from './Logo';
+import MobileNav from './MobileNav';
 import PageTitle from './PageTitle';
-3;
+
 type HeaderProps = {
   className?: string;
 };
@@ -22,21 +22,9 @@ export default function Header({ className }: HeaderProps) {
   }
 
   return (
-    <div
-      className={clsx(
-        'rounded-b-3xl border-gray-300 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-950 lg:rounded-none lg:border-b lg:bg-transparent dark:lg:bg-transparent',
-        className,
-      )}
-    >
+    <div className={clsx('lg:border-b dark:border-gray-800 px-4', className)}>
       {/* mobile header */}
-      <div className='flex lg:hidden items-center flex-row-reverse justify-between'>
-        <Logo />
-        <PageTitle
-          replace={(tag && true) || false}
-          tag={(tag && tag) || undefined}
-          title={(tag && 'Notes Tagged: ') || undefined}
-        />
-      </div>
+      <MobileNav />
 
       {/* desktop header */}
       <div className='hidden h-full items-center justify-between lg:flex'>
@@ -54,13 +42,13 @@ export default function Header({ className }: HeaderProps) {
             variant='faded'
           />
           <Tooltip content='Settings' delay={500} radius='sm'>
-          <Link href='/settings'>
-            <IoSettingsOutline
-              className='cursor-pointer'
-              focusable={true}
-              size={26}
-            />
-          </Link>
+            <Link href='/settings'>
+              <IoSettingsOutline
+                className='cursor-pointer'
+                focusable={true}
+                size={26}
+              />
+            </Link>
           </Tooltip>
         </div>
       </div>

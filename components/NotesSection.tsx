@@ -34,7 +34,7 @@ export default function NotesSection({
       {!hideButton && (
         <Button
           as={Link}
-          className='hidden w-full lg:flex'
+          className='hidden w-full lg:flex mt-4'
           color='primary'
           href='/create'
           radius='sm' size='lg' startContent={<IoAddOutline size={22} />}

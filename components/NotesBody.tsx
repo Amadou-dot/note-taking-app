@@ -82,12 +82,13 @@ export default function NotesBody({
       <div
         className={clsx(
           'flex h-full flex-col gap-4 px-4',
-          'pt-20 lg:pt-4', // Add top padding for mobile nav
+          '', 
+          '',
           className,
         )}
       >
         {!note && (
-          <div className='flex flex-col gap-6'>
+          <div className='flex flex-col gap-6 pt-4'>
            
             {!readOnly && (
               <>
@@ -115,7 +116,7 @@ export default function NotesBody({
           </div>
         )}
         {note && (
-          <div className='lg:grid lg:grid-cols-[1fr_200px]'>
+          <div className='lg:grid lg:grid-cols-[1fr_200px] pt-24 lg:pt-4'>
             <div className='flex h-full flex-col gap-4 px-4'>
               {readOnly ? (
                 <h1 className='text-4xl font-bold'>{title}</h1>
@@ -129,7 +130,7 @@ export default function NotesBody({
               )}
 
               {/* Tags */}
-              <div className='space-y-2 border-b pb-2 dark:border-gray-800'>
+              <div className='space-y-4 border-b pb-2 dark:border-gray-800'>
                 {readOnly ? (
                   <div className='flex'>
                     <p className='flex w-44 items-center gap-2'>
