@@ -13,7 +13,7 @@ import {
   handleArchiveNote,
   handleDeleteNote,
   handleSaveNote,
-} from '@/helpers/noteActionHandlers';
+} from '@/helpers/notesDB';
 import { Note } from '@/types/Note';
 
 type NotesBodyProps = {
@@ -39,7 +39,7 @@ export default function NotesBody({
     if (note) {
       setTitle(note.title);
       setBody(note.body);
-      setTags(note.tags);
+      setTags((note.tags && note.tags) || []);
     } else {
       setTitle('');
       setBody('');
@@ -159,7 +159,7 @@ export default function NotesBody({
                     {React.createElement(siteConfig.icons.time, { size: 20 })}
                     Last edited
                   </p>
-                  <span>{formatDate(note.last_updated)}</span>
+                  <span>{formatDate(new Date(note.last_updated))}</span>
                 </div>
               </div>
 

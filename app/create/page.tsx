@@ -7,15 +7,15 @@ import { IoArrowBack } from 'react-icons/io5';
 
 import Bounded from '@/components/Bounded';
 import NotesBody from '@/components/NotesBody';
-import { handleSaveNote } from '@/helpers/noteActionHandlers';
 import { Note } from '@/types/Note';
+import { handleSaveNote } from '@/helpers/notesDB';
 
 export default function Create() {
   const [note, setNote] = useState<Partial<Note>>({
     title: '',
     body: '',
     tags: [],
-    last_updated: new Date(),
+    last_updated: new Date().toDateString(),
     isArchived: false,
   });
 
@@ -23,7 +23,7 @@ export default function Create() {
     setNote((prev) => ({
       ...prev,
       ...updatedFields,
-      last_updated: new Date(),
+      last_updated: new Date().toDateString(),
     }));
   };
 

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import * as React from 'react';
 
 import { FontProvider } from '@/contexts/FontContext';
+import { NotesProvider } from '@/contexts/NotesContext';
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -28,7 +29,9 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   return (
     <HeroUIProvider navigate={router.push}>
       <NextThemesProvider {...themeProps}>
-        <FontProvider>{children}</FontProvider>
+        <NotesProvider>
+          <FontProvider>{children}</FontProvider>
+        </NotesProvider>
       </NextThemesProvider>
     </HeroUIProvider>
   );

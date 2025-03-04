@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { IoArrowBack } from 'react-icons/io5';
 
 import NotesSection from '@/components/NotesSection';
-import { notes } from '@/temp/notes';
 
 type Props = {
   params: Promise<{ tag: string }>;
@@ -11,11 +10,6 @@ type Props = {
 export default async function page({ params }: Props) {
   const p = await params;
   const tag = p.tag;
-
-  // only get the tags from notes that are NOT archived
-  const taggedNotes = notes.filter(
-    (note) => note.tags.includes(tag) && !note.isArchived,
-  );
 
   return (
     <div>
@@ -31,16 +25,7 @@ export default async function page({ params }: Props) {
           Go back
         </Button>
       </div>
-      <NotesSection
-        hideButton
-        hideEmptyNote={taggedNotes.length === 0}
-        message={
-          taggedNotes.length === 0
-            ? 'No notes with that tag were found'
-            : undefined
-        }
-        notes={taggedNotes}
-      />
+      <NotesSection hideButton tag={tag} />
     </div>
   );
 }

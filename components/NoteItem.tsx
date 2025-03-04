@@ -11,7 +11,7 @@ export default function NoteItem({ note }: NoteItemProps) {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
-  }).format(note.last_updated);
+  }).format(new Date(note.last_updated));
   const url = note.isArchived ? `/archive/${note.id}` : `/all/${note.id}`;
 
   return (
@@ -25,7 +25,7 @@ export default function NoteItem({ note }: NoteItemProps) {
           {note.title}
         </span>
         <span className='flex gap-2 font-semibold'>
-          {note.tags.slice(0, 3).map((tag) => (
+          {note.tags?.slice(0, 3).map((tag) => (
             <Chip key={tag} radius='sm' size='lg' variant='solid'>
               {tag}
             </Chip>

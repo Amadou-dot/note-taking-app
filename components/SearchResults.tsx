@@ -6,15 +6,13 @@ import { useEffect, useState } from 'react';
 import NotesSection from './NotesSection';
 import SearchBar from './SearchBar';
 
-import { ArchiveFilter, getNotesBySearch } from '@/helpers/getNotesBySearch';
-import { Note } from '@/types/Note';
+import { ArchiveFilter } from '@/types/Note';
 
 export default function SearchResults() {
   const searchParams = useSearchParams();
   const queryParam = searchParams?.get('q') || '';
 
   const [value, setValue] = useState(queryParam);
-  const [notes, setNotes] = useState<Note[]>([]);
   const [archiveFilter, setArchiveFilter] =
     useState<ArchiveFilter>('not-archived');
 
@@ -22,17 +20,6 @@ export default function SearchResults() {
     // Update value when URL parameter changes
     setValue(queryParam);
   }, [queryParam]);
-
-  useEffect(() => {
-    // Search for notes when value or archiveFilter changes
-    if (value) {
-      const searchResults = getNotesBySearch(value, archiveFilter);
-
-      setNotes(searchResults);
-    } else {
-      setNotes([]);
-    }
-  }, [value, archiveFilter]);
 
   return (
     <div>
@@ -61,9 +48,10 @@ export default function SearchResults() {
         <NotesSection
           hideButton
           hideEmptyNote
+          archiveFilter={archiveFilter}
           className='border-none'
-          message={(!notes.length && 'No notes contain that term') || undefined}
-          notes={notes}
+          message='No notes contain that term'
+          query={value}
         />
       )}
     </div>

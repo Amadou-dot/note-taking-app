@@ -1,11 +1,15 @@
+'use client';
 type Props = {
   params: Promise<{ noteId: string }>;
 };
 
+import { use, useContext } from 'react';
+
 import NotesBody from '@/components/NotesBody';
-import { notes } from '@/temp/notes';
-export default async function page({ params }: Props) {
-  const p = await params;
+import { NotesContext } from '@/contexts/NotesContext';
+export default function ArchiveNoteIdPage({ params }: Props) {
+  const { notes } = useContext(NotesContext);
+  const p = use(params);
   const id = p.noteId;
   const note = notes[notes.findIndex((note) => note.id === Number(id))];
 
