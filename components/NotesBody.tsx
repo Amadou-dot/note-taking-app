@@ -8,7 +8,7 @@ import NoteActions from './NoteActions';
 import TagSelector from './TagSelector';
 
 import { siteConfig } from '@/config/site';
-import { formatDate } from '@/helpers/formateDate';
+import { formatLastUpdated } from '@/helpers/formatLastUpdatedDate';
 import {
   handleArchiveNote,
   handleDeleteNote,
@@ -154,12 +154,14 @@ export default function NotesBody({
                 )}
 
                 {/* Last edited */}
-                <div className='flex'>
+                <div className='flex justify-between'>
                   <p className='flex w-44 items-center gap-2'>
                     {React.createElement(siteConfig.icons.time, { size: 20 })}
                     Last edited
                   </p>
-                  <span>{formatDate(new Date(note.last_updated))}</span>
+                  <span>
+                    {note.last_updated && formatLastUpdated(note.last_updated)}
+                  </span>
                 </div>
               </div>
 

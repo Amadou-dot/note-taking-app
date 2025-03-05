@@ -1,6 +1,6 @@
 import NotesSection from '@/components/NotesSection';
 
-export default function NoteIDLayout({
+export default function AllLayout({
   children,
 }: {
   children: React.ReactNode;

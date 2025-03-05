@@ -10,7 +10,7 @@ import NotesBody from '@/components/NotesBody';
 import { Note } from '@/types/Note';
 import { handleSaveNote } from '@/helpers/notesDB';
 
-export default function Create() {
+export default function CreatePage() {
   const [note, setNote] = useState<Partial<Note>>({
     title: '',
     body: '',

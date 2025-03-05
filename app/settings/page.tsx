@@ -1,9 +1,9 @@
 import FontSwitch from '@/components/FontSwitch';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
 
-export default function settings() {
+export default function SettingsPage() {
   return (
-    <div className='mt-8 flex flex-col gap-4 px-4 *:flex *:flex-col *:gap-4'>
+    <div className='mt-8 flex flex-col gap-4 px-4 *:flex *:flex-col *:gap-4 max-h-screen overflow-y-scroll'>
       <div className=''>
         <p className='flex flex-col text-lg font-semibold'>
           Color Theme{' '}

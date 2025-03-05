@@ -49,8 +49,7 @@ export default function SearchResults() {
           hideButton
           hideEmptyNote
           archiveFilter={archiveFilter}
-          className='border-none'
-          message='No notes contain that term'
+          className='max-h-screen overflow-y-scroll border-none'
           query={value}
         />
       )}

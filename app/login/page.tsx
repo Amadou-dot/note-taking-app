@@ -4,7 +4,7 @@ import { Logo } from '@/components/Logo';
 export const metadata = {
   title: 'Login',
 };
-export default function page() {
+export default function LoginPage() {
   return (
     <div className='flex h-full w-full items-center justify-center'>
       <div className='flex w-full max-w-[700px] flex-col items-center rounded-lg bg-slate-900 px-4'>

@@ -1,7 +1,7 @@
 import NoteActions from '@/components/NoteActions';
 import NotesSection from '@/components/NotesSection';
 
-export default function createLayout({
+export default function CreateLayout({
   children,
 }: {
   children: React.ReactNode;
