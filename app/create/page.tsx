@@ -4,18 +4,19 @@ import { Button } from '@heroui/button';
 import Link from 'next/link';
 import { useState } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
+import { toast } from 'react-toastify';
 
 import Bounded from '@/components/Bounded';
 import NotesBody from '@/components/NotesBody';
+import { handleCreateNote } from '@/helpers/notesDB';
 import { Note } from '@/types/Note';
-import { handleSaveNote } from '@/helpers/notesDB';
 
 export default function CreatePage() {
   const [note, setNote] = useState<Partial<Note>>({
     title: '',
     body: '',
     tags: [],
-    last_updated: new Date().toDateString(),
+    last_updated: new Date().toISOString(),
     isArchived: false,
   });
 
@@ -26,11 +27,19 @@ export default function CreatePage() {
       last_updated: new Date().toDateString(),
     }));
   };
+  const createNote = async () => {
+    try {
+      await handleCreateNote(note);
+      toast.success('Note saved successfully!');
+    } catch {
+      toast.error('Error saving note');
+    }
+  };
 
   return (
     <Bounded className='px-4'>
       <div>
-        <nav className='mt-4 flex items-center justify-between '>
+        <nav className='mt-4 flex items-center justify-between'>
           <Button
             as={Link}
             href='/'
@@ -46,7 +55,7 @@ export default function CreatePage() {
             radius='sm'
             size='lg'
             variant='light'
-            onPress={() => handleSaveNote(note)}
+            onPress={createNote}
           >
             Save Note
           </Button>

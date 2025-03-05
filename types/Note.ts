@@ -1,4 +1,4 @@
-export type Note = Database['public']['Tables']['Notes']['Row'];
+export type Note = Tables<"Notes">
 export type NoteUpdate = Database['public']['Tables']['Notes']['Update'];
 export type NoteInsert = Database['public']['Tables']['Notes']['Insert'];
 export type ArchiveFilter = 'all' | 'archived' | 'not-archived';

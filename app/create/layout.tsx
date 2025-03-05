@@ -1,4 +1,3 @@
-import NoteActions from '@/components/NoteActions';
 import NotesSection from '@/components/NotesSection';
 
 export default function CreateLayout({
@@ -12,9 +11,6 @@ export default function CreateLayout({
         <NotesSection className='h-full' />
       </aside>
       <main className='flex-1 overflow-y-auto'>{children}</main>
-      <aside className='hidden h-full w-1/5 min-w-[300px] flex-shrink-0 overflow-hidden lg:flex'>
-        <NoteActions />
-      </aside>
     </div>
   );
 }

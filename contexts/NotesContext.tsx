@@ -21,7 +21,7 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
     const getNotes = async () => {
       const noteArr = await getAllNotes();
 
-      setNotes(noteArr);
+      if (noteArr) setNotes(noteArr);
     };
 
     getNotes();
