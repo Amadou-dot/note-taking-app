@@ -139,7 +139,7 @@ export default function NotesBody({
     };
 
     toReturn = (
-      <>
+      <div className="min-h-[calc(100vh-theme(spacing.16))]">
         <MobileNoteNav
           isArchived={note.isArchived}
           onArchive={archiveNote}
@@ -147,8 +147,8 @@ export default function NotesBody({
           onRestore={restoreNote}
           onSave={saveNote}
         />
-        <div className='pt-4 lg:grid lg:grid-cols-[1fr_200px]'>
-          <div className='flex h-full flex-col gap-4 px-4'>
+        <div className='lg:grid lg:grid-cols-[1fr_200px]'>
+          <div className='flex flex-col gap-4 px-4 mt-4'>
             {readOnly ? (
               <h1 className='text-4xl font-bold'>{noteState.title}</h1>
             ) : (
@@ -220,7 +220,7 @@ export default function NotesBody({
             onSave={saveNote}
           />
         </div>
-      </>
+      </div>
     );
   } else {
     toReturn = (

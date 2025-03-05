@@ -1,4 +1,3 @@
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import '@/styles/globals.css';
 import { Tooltip } from '@heroui/tooltip';
 import clsx from 'clsx';
@@ -11,6 +10,7 @@ import { Providers } from './providers';
 
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { fontSans } from '@/config/fonts';
 import { siteConfig } from '@/config/site';
 
