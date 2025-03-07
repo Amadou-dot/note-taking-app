@@ -3,17 +3,17 @@ import { ThemeSwitch } from '@/components/ThemeSwitch';
 
 export default function SettingsPage() {
   return (
-    <div className='mt-8 flex flex-col gap-4 px-4 *:flex *:flex-col *:gap-4 max-h-screen overflow-y-scroll'>
-      <div className=''>
+    <div className='h-[calc(100vh-4rem)] overflow-auto pb-20 px-4 mt-8 flex flex-col gap-6'>
+      <div>
         <p className='flex flex-col text-lg font-semibold'>
-          Color Theme{' '}
+          <span> Color Theme</span>
           <span className='text-sm text-gray-500'>Choose your color theme</span>
         </p>
         <ThemeSwitch />
       </div>
-      <div className=''>
+      <div>
         <p className='flex flex-col text-lg font-semibold'>
-          Font Theme{' '}
+          <span>Font Theme</span>
           <span className='text-sm text-gray-500'>Choose your font theme</span>
         </p>
         <FontSwitch />
