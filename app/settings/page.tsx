@@ -3,7 +3,7 @@ import { ThemeSwitch } from '@/components/ThemeSwitch';
 
 export default function SettingsPage() {
   return (
-    <div className='h-[calc(100vh-4rem)] overflow-auto pb-20 px-4 mt-8 flex flex-col gap-6'>
+    <div className='h-[calc(100vh-4rem)] overflow-auto overflow-y-auto pb-20 px-4 mt-8 flex flex-col gap-6'>
       <div>
         <p className='flex flex-col text-lg font-semibold'>
           <span> Color Theme</span>
