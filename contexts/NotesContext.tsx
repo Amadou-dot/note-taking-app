@@ -21,7 +21,16 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
     const getNotes = async () => {
       const noteArr = await getAllNotes();
 
-      if (noteArr) setNotes(noteArr);
+      if (noteArr) {
+        // sort notes by last updated date
+        noteArr.sort((a, b) => {
+          return (
+            new Date(b.last_updated).getTime() -
+            new Date(a.last_updated).getTime()
+          );
+        });
+        setNotes(noteArr);
+      }
     };
 
     getNotes();
