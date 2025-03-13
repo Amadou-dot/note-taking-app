@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 import MobileNoteNav from './MobileNoteNav';
 import NoteActions from './NoteActions';
+import RichTextEditor from './RichTextEditor';
 import TagSelector from './TagSelector';
 
 import { siteConfig } from '@/config/site';
@@ -77,9 +78,7 @@ export default function NotesBody({
     }
   };
 
-  const handleBodyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newBody = e.target.value;
-
+  const handleBodyChange = (newBody: string) => {
     setNoteState((prev) => ({
       ...prev,
       body: newBody,
@@ -139,7 +138,7 @@ export default function NotesBody({
     };
 
     toReturn = (
-      <div className="min-h-[calc(100vh-theme(spacing.16))]">
+      <div className='min-h-[calc(100vh-theme(spacing.16))]'>
         <MobileNoteNav
           isArchived={note.isArchived}
           onArchive={archiveNote}
@@ -148,7 +147,7 @@ export default function NotesBody({
           onSave={saveNote}
         />
         <div className='lg:grid lg:grid-cols-[1fr_200px]'>
-          <div className='flex flex-col gap-4 px-4 mt-4'>
+          <div className='mt-4 flex flex-col gap-4 px-4'>
             {readOnly ? (
               <h1 className='text-4xl font-bold'>{noteState.title}</h1>
             ) : (
@@ -200,17 +199,12 @@ export default function NotesBody({
               </div>
             </div>
 
-            {readOnly ? (
-              <div className='h-full overflow-y-auto whitespace-pre-wrap text-xl'>
-                {noteState.body}
-              </div>
-            ) : (
-              <textarea
-                className='h-full min-h-[50vh] w-full resize-none border-none bg-transparent text-xl outline-none focus:ring-0'
-                value={noteState.body}
-                onChange={handleBodyChange}
-              />
-            )}
+            {/* Rich Text Editor replaces textarea */}
+            <RichTextEditor
+              content={noteState.body || ''}
+              readOnly={readOnly}
+              onChange={handleBodyChange}
+            />
           </div>
           <NoteActions
             note={{ ...noteState, id: note.id } as Note}
@@ -241,10 +235,9 @@ export default function NotesBody({
                 onTagsChange={handleTagsChange}
               />
 
-              <textarea
-                className='h-full min-h-[50vh] w-full resize-none border-none bg-transparent outline-none placeholder:text-gray-400 focus:ring-0'
+              <RichTextEditor
+                content={noteState.body || ''}
                 placeholder='Start writing your note here...'
-                value={noteState.body}
                 onChange={handleBodyChange}
               />
             </>

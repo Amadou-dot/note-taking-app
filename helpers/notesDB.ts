@@ -125,7 +125,7 @@ export const handleSaveNote = async (
 ): Promise<Note | null> => {
   const { data, error } = await supabase
     .from('Notes')
-    .upsert({ ...note })
+    .upsert({ ...note, last_updated: new Date().toISOString() })
     .select();
 
   if (error) throw new Error(error.message);

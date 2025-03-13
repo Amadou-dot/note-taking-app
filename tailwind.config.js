@@ -19,8 +19,39 @@ module.exports = {
         'text-dark': '#1e293b',
         'text-light': '#F0F0F0',
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: 'none',
+            color: theme('colors.gray.700'),
+            a: {
+              color: theme('colors.blue.500'),
+              '&:hover': {
+                color: theme('colors.blue.700'),
+              },
+            },
+            img: {
+              maxWidth: '100%',
+              height: 'auto',
+              marginTop: theme('spacing.4'),
+              marginBottom: theme('spacing.4'),
+            },
+          },
+        },
+        invert: {
+          css: {
+            color: theme('colors.gray.300'),
+            a: {
+              color: theme('colors.blue.400'),
+              '&:hover': {
+                color: theme('colors.blue.300'),
+              },
+            },
+          },
+        },
+      }),
     },
   },
   darkMode: 'class',
-  plugins: [heroui()],
+  plugins: [heroui(), require('@tailwindcss/typography')],
 };
