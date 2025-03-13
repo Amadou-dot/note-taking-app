@@ -11,12 +11,22 @@ type PageTitleProps = {
   title?: string;
   className?: string;
 };
+/**
+ * Component to display a page title with optional tag and replacement title.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.tag - The tag to display alongside the title.
+ * @param {boolean} [props.replace=false] - Flag to determine if the title should be replaced. Defaults to false.
+ * @param {string} props.title - The title to display.
+ * @param {string} props.className - Additional class names for styling.
+ * @returns {JSX.Element} The rendered page title component.
+ */
 export default function PageTitle({
   tag,
   replace = false,
   title,
   className,
-}: PageTitleProps) {
+}: PageTitleProps): JSX.Element {
   const pathName = usePathname();
   const pathTitle: string =
     siteConfig.pathTitles[

@@ -18,13 +18,25 @@ type MobileNoteNavProps = {
   onRestore: () => void;
 };
 
+/**
+ * MobileNoteNav component provides a navigation bar for mobile devices with options to save, delete, archive, or restore a note.
+ *
+ * @param {Object} props - The component props.
+ * @param {boolean} props.isArchived - Indicates if the note is archived.
+ * @param {Function} props.onSave - Callback function to handle saving the note.
+ * @param {Function} props.onDelete - Callback function to handle deleting the note.
+ * @param {Function} props.onArchive - Callback function to handle archiving the note.
+ * @param {Function} props.onRestore - Callback function to handle restoring the note.
+ *
+ * @returns {JSX.Element} The rendered MobileNoteNav component.
+ */
 export default function MobileNoteNav({
   isArchived,
   onSave,
   onDelete,
   onArchive,
   onRestore,
-}: MobileNoteNavProps) {
+}: MobileNoteNavProps): JSX.Element {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const backUrl = isArchived ? '/archive' : '/all';

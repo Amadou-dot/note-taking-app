@@ -8,7 +8,39 @@ import SearchBar from './SearchBar';
 
 import { ArchiveFilter } from '@/types/Note';
 
-export default function SearchResults() {
+/**
+ * The `SearchResults` component is responsible for rendering the search results
+ * based on the query parameter from the URL and the selected archive filter.
+ *
+ * @component
+ *
+ * @returns {JSX.Element} The rendered search results component.
+ *
+ * @remarks
+ * This component uses the `useSearchParams` hook to retrieve the query parameter
+ * from the URL and updates the search input value accordingly. It also provides
+ * a radio group to filter notes based on their archive status.
+ *
+ * @example
+ * ```tsx
+ * <SearchResults />
+ * ```
+ *
+ * @hook
+ * - `useSearchParams` - Retrieves the search parameters from the URL.
+ * - `useState` - Manages the state for the search input value and archive filter.
+ * - `useEffect` - Updates the search input value when the URL parameter changes.
+ *
+ * @param {string} queryParam - The query parameter from the URL.
+ * @param {string} value - The current value of the search input.
+ * @param {ArchiveFilter} archiveFilter - The current archive filter selection.
+ *
+ * @interface ArchiveFilter
+ * @property {string} 'all' - Filter to show all notes.
+ * @property {string} 'not-archived' - Filter to show only not archived notes.
+ * @property {string} 'archived' - Filter to show only archived notes.
+ */
+export default function SearchResults(): JSX.Element {
   const searchParams = useSearchParams();
   const queryParam = searchParams?.get('q') || '';
 

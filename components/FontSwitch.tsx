@@ -6,7 +6,19 @@ import { useFont } from '../contexts/FontContext';
 
 import { CustomRadio } from './CustomRadio';
 
-export default function FontSwitch() {
+/**
+ * A component that allows users to switch between different font styles.
+ * 
+ * This component uses a radio group to present three font options: 'sans-serif', 'serif', and 'monospace'.
+ * Each option is represented by a `CustomRadio` component with a corresponding icon and description.
+ * 
+ * @component
+ * @example
+ * <FontSwitch />
+ * 
+ * @returns {JSX.Element} The FontSwitch component.
+ */
+export default function FontSwitch(): JSX.Element {
   const { font, setFont } = useFont();
 
   const handleFontChange = (value: string) => {

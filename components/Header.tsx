@@ -13,7 +13,27 @@ import SearchBar from './SearchBar';
 type HeaderProps = {
   className?: string;
 };
-export default function Header({ className }: HeaderProps) {
+
+/**
+ * Header component that displays a navigation bar with a search bar and settings link.
+ *
+ * @param {HeaderProps} props - The properties for the Header component.
+ * @param {string} props.className - Additional class names for styling the header.
+ *
+ * @returns {JSX.Element} The rendered Header component.
+ *
+ * @remarks
+ * - If the current path includes 'tags', it extracts the tag from the URL.
+ * - The search bar allows users to search for notes, navigating to the search page with the query.
+ * - The settings link navigates to the settings page.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Header className="custom-class" />
+ * ```
+ */
+export default function Header({ className }: HeaderProps): JSX.Element {
   const pathName = usePathname();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,7 +47,7 @@ export default function Header({ className }: HeaderProps) {
 
   const handleSearch = (value: string) => {
     setSearchQuery(value);
-    
+
     // Optional: Add debounce here for better performance
     if (value.trim().length > 0) {
       // Navigate to the search page with the query
@@ -52,10 +72,7 @@ export default function Header({ className }: HeaderProps) {
           title={(tag && 'Notes Tagged: ') || undefined}
         />
         <div className='hidden items-center gap-10 lg:flex'>
-          <SearchBar 
-            value={searchQuery} 
-            onValueChange={handleSearch} 
-          />
+          <SearchBar value={searchQuery} onValueChange={handleSearch} />
           <Tooltip content='Settings' delay={500} radius='sm'>
             <Link href='/settings'>
               <IoSettingsOutline

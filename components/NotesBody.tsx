@@ -10,7 +10,7 @@ import RichTextEditor from './RichTextEditor';
 import TagSelector from './TagSelector';
 
 import { siteConfig } from '@/config/site';
-import { formatLastUpdated } from '@/helpers/formatLastUpdatedDate';
+import { formatLastUpdated } from '@/helpers/formateDate';
 import {
   handleArchiveNote,
   handleDeleteNote,

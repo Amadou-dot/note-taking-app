@@ -15,19 +15,32 @@ type NoteActionProps = {
   onRestore?: () => void;
 };
 
+/**
+ * Component for rendering note actions including save, archive, restore, and delete.
+ *
+ * @component
+ * @param {NoteActionProps} props - The properties for the NoteActions component.
+ * @param {Object} props.note - The note object containing note details.
+ * @param {Function} props.onSave - Callback function to handle saving the note.
+ * @param {Function} props.onDelete - Callback function to handle deleting the note.
+ * @param {Function} props.onArchive - Callback function to handle archiving the note.
+ * @param {Function} props.onRestore - Callback function to handle restoring the note.
+ *
+ * @returns {JSX.Element} The rendered NoteActions component.
+ */
 export default function NoteActions({
   note,
   onSave,
   onDelete,
   onArchive,
   onRestore,
-}: NoteActionProps) {
+}: NoteActionProps): JSX.Element {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
 
   return (
-    <div className='hidden border-l dark:border-gray-800 lg:flex flex-col items-center relative min-h-[calc(100vh-theme(spacing.16))]'>
-      <div className='flex flex-col items-center gap-8 px-4 *:w-full mt-4 w-full'>
+    <div className='relative hidden min-h-[calc(100vh-theme(spacing.16))] flex-col items-center border-l dark:border-gray-800 lg:flex'>
+      <div className='mt-4 flex w-full flex-col items-center gap-8 px-4 *:w-full'>
         <Button
           radius='sm'
           startContent={<IoArchiveOutline />}

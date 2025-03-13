@@ -7,7 +7,7 @@ import { FC } from 'react';
 import {
   IoInvertModeOutline,
   IoMoonOutline,
-  IoSunnyOutline
+  IoSunnyOutline,
 } from 'react-icons/io5';
 
 import { CustomRadio } from './CustomRadio';
@@ -19,6 +19,19 @@ export interface ThemeSwitchProps {
   };
 }
 
+/**
+ * ThemeSwitch component allows users to switch between different themes: light, dark, and system.
+ *
+ * @param {string} className - Additional class names for the component.
+ * @param {object} classNames - Object containing class names for different parts of the component.
+ *
+ * @returns {JSX.Element} The rendered ThemeSwitch component.
+ *
+ * @component
+ *
+ * @example
+ * <ThemeSwitch className="my-class" classNames={{ base: 'base-class', radio: 'radio-class' }} />
+ */
 export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   className,
   classNames,

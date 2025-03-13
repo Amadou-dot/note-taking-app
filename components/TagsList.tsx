@@ -5,12 +5,19 @@ import { useContext } from 'react';
 import { IoPricetagOutline } from 'react-icons/io5';
 
 import { NotesContext } from '@/contexts/NotesContext';
-import { Note } from '@/types/Note';
+import { getNoteTags } from '@/helpers/getNoteTags';
 
 type TagsListProps = {
   className?: string;
 };
-export default function TagsList({ className }: TagsListProps) {
+/**
+ * A component that renders a list of tags.
+ *
+ * @param {TagsListProps} props - The props for the TagsList component.
+ * @param {string} props.className - Additional class names to apply to the container div.
+ * @returns {JSX.Element} The rendered list of tags.
+ */
+export default function TagsList({ className }: TagsListProps): JSX.Element {
   const { notes } = useContext(NotesContext);
 
   const tags = getNoteTags(notes);
@@ -20,7 +27,7 @@ export default function TagsList({ className }: TagsListProps) {
       {Array.from(new Set(tags)).map((tag) => (
         <Link
           key={tag}
-          className='flex items-center gap-3 rounded-md px-1 py-2 hover:bg-gray-200 dark:hover:bg-gray-800'
+          className='flex items-center gap-3 rounded-sm px-1 py-2 hover:bg-gray-200 dark:hover:bg-gray-800'
           href={`/tags/${tag}`}
         >
           <IoPricetagOutline size={20} /> {tag}
@@ -29,10 +36,3 @@ export default function TagsList({ className }: TagsListProps) {
     </div>
   );
 }
-
-export const getNoteTags = (notes: Note[]) => {
-  if (!notes) return [];
-  const tagsArr = notes.map(({ tags }) => tags).flat();
-
-  return tagsArr;
-};

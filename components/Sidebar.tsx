@@ -13,7 +13,20 @@ import { siteConfig } from '@/config/site';
 type SidebarProps = {
   className?: string;
 };
-export default function Sidebar({ className }: SidebarProps) {
+/**
+ * Sidebar component that displays a navigation menu with links and a logo.
+ *
+ * @param {SidebarProps} props - The props for the Sidebar component.
+ * @param {string} props.className - Additional class names to apply to the sidebar.
+ *
+ * @returns {JSX.Element} The rendered Sidebar component.
+ *
+ * The Sidebar component uses the `usePathname` hook to determine the current path and highlight the active navigation item.
+ * It maps over the `siteConfig.navItems` array to generate the navigation links.
+ * Each link displays an icon and a label, and the active link is styled differently.
+ * The component also includes a `TagsList` component and a horizontal rule (`<hr />`) for additional content.
+ */
+export default function Sidebar({ className }: SidebarProps): JSX.Element {
   const pathName = usePathname();
 
   return (

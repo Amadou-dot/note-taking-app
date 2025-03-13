@@ -24,7 +24,16 @@ declare module '@react-types/shared' {
   }
 }
 
-export function Providers({ children, themeProps }: ProvidersProps) {
+/**
+ * Providers component that wraps the application with various context providers.
+ *
+ * @param {ProvidersProps} props - The props for the Providers component.
+ * @param {React.ReactNode} props.children - The child components to be wrapped by the providers.
+ * @param {object} props.themeProps - The properties for the NextThemesProvider.
+ *
+ * @returns {JSX.Element} The wrapped child components with the necessary providers.
+ */
+export function Providers({ children, themeProps }: ProvidersProps): JSX.Element {
   const router = useRouter();
   const { theme } = useTheme();
   const toastTheme = theme === 'system' ? 'dark' : theme;

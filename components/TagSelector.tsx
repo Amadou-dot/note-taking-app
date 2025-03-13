@@ -1,8 +1,8 @@
 'use client';
 
+import { Chip } from '@heroui/chip';
 import { useState } from 'react';
 import { IoAdd } from 'react-icons/io5';
-import { Chip } from '@heroui/chip';
 const SAMPLE_TAGS = ['work', 'personal', 'ideas', 'todo', 'learning'];
 
 interface TagSelectorProps {
@@ -10,10 +10,26 @@ interface TagSelectorProps {
   onTagsChange: (tags: string[]) => void;
 }
 
+/**
+ * TagSelector component allows users to select and manage tags.
+ *
+ * @param {TagSelectorProps} props - The properties for the TagSelector component.
+ * @param {string[]} props.selectedTags - The list of currently selected tags.
+ * @param {(tags: string[]) => void} props.onTagsChange - Callback function to handle changes to the selected tags.
+ *
+ * @returns {JSX.Element} The rendered TagSelector component.
+ *
+ * @component
+ * @example
+ * const selectedTags = ['tag1', 'tag2'];
+ * const handleTagsChange = (newTags) => console.log(newTags);
+ *
+ * <TagSelector selectedTags={selectedTags} onTagsChange={handleTagsChange} />
+ */
 export default function TagSelector({
   selectedTags,
   onTagsChange,
-}: TagSelectorProps) {
+}: TagSelectorProps): JSX.Element {
   const [inputValue, setInputValue] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -44,7 +60,12 @@ export default function TagSelector({
       {/* Selected Tags */}
       <div className='flex flex-wrap gap-2'>
         {selectedTags.map((tag) => (
-          <Chip key={tag} color='primary' radius='sm' onClose={() => removeTag(tag)}>
+          <Chip
+            key={tag}
+            color='primary'
+            radius='sm'
+            onClose={() => removeTag(tag)}
+          >
             #{tag}
           </Chip>
         ))}

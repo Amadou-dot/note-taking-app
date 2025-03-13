@@ -16,7 +16,35 @@ import PageTitle from './PageTitle';
 
 import { siteConfig } from '@/config/site';
 
-export default function MobileNav() {
+/**
+ * MobileNav component renders a responsive navigation bar for mobile devices.
+ * It displays a menu toggle button, a page title, and a logo.
+ * The menu items are dynamically generated from the siteConfig.navMenuItems array.
+ *
+ * @returns {JSX.Element} The rendered MobileNav component.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <MobileNav />
+ *
+ * @remarks
+ * - The component uses the `usePathname` hook to get the current URL path.
+ * - If the URL contains 'tags', it extracts the tag from the URL.
+ * - The `isMenuOpen` state controls the visibility of the menu.
+ * - The `NavbarMenuToggle` button toggles the `isMenuOpen` state.
+ * - The `PageTitle` component displays a title based on the extracted tag.
+ * - The `NavbarMenu` contains links generated from `siteConfig.navMenuItems`.
+ *
+ * @hook
+ * - `usePathname` - Retrieves the current URL path.
+ * - `useState` - Manages the `isMenuOpen` state.
+ *
+ * @param {boolean} isMenuOpen - State to track if the menu is open or closed.
+ * @param {function} setIsMenuOpen - Function to update the `isMenuOpen` state.
+ * @param {string | null} tag - Extracted tag from the URL if on the tags page.
+ */
+export default function MobileNav(): JSX.Element {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

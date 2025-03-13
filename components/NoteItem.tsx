@@ -2,30 +2,20 @@ import { Chip } from '@heroui/chip';
 import Link from 'next/link';
 import React from 'react';
 
+import { getTextPreview } from '@/helpers/getPreviewText';
 import { Note } from '@/types/Note';
 
 type NoteItemProps = {
   note: Note;
 };
 
-// Function to strip HTML tags and get a plain text preview
-const getTextPreview = (html: string, maxLength: number = 100): string => {
-  // Create a temporary element to parse HTML
-  const tempDiv = document.createElement('div');
-
-  tempDiv.innerHTML = html;
-
-  // Get text content and truncate
-  let text = tempDiv.textContent || tempDiv.innerText || '';
-
-  if (text.length > maxLength) {
-    text = text.substring(0, maxLength) + '...';
-  }
-
-  return text;
-};
-
-export default function NoteItem({ note }: NoteItemProps) {
+/**
+ * A functional component that renders a note item.
+ *
+ * @param {NoteItemProps} {note} - A note object to be rendered.
+ * @returns {JSX.Element} The rendered note item component.
+ */
+export default function NoteItem({ note }: NoteItemProps): JSX.Element {
   const date = new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: '2-digit',

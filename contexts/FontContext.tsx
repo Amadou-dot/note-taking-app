@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { Inter, Merriweather, Roboto_Mono } from 'next/font/google';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
@@ -17,7 +17,29 @@ interface FontContextType {
 
 const FontContext = createContext<FontContextType | undefined>(undefined);
 
-export function FontProvider({ children }: { children: ReactNode }) {
+/**
+ * Provides font context to its children components.
+ *
+ * @param {Object} props - The properties object.
+ * @param {ReactNode} props.children - The child components to be wrapped by the provider.
+ *
+ * @returns {JSX.Element} The FontContext provider with the appropriate font class applied.
+ *
+ * @remarks
+ * This component uses a context to manage the font state and provides a method to get the appropriate font class based on the current font selection.
+ *
+ * @example
+ * ```tsx
+ * <FontProvider>
+ *   <YourComponent />
+ * </FontProvider>
+ * ```
+ */
+export function FontProvider({
+  children,
+}: {
+  children: ReactNode;
+}): JSX.Element {
   const [font, setFont] = useState<FontType>('sans-serif');
 
   // Get the appropriate font class based on selection
