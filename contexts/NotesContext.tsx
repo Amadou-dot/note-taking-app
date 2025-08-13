@@ -7,37 +7,52 @@ import {
   useState,
 } from 'react';
 
-import { getAllNotes } from '@/helpers/notesDB';
 import { Note } from '@/types/Note';
 
 export const NotesContext = createContext(
-  {} as { notes: Note[]; setNotes: Dispatch<SetStateAction<Note[]>> },
+  {} as { 
+    notes: Note[]; 
+    setNotes: Dispatch<SetStateAction<Note[]>>;
+    refreshNotes: () => Promise<void>;
+  },
 );
 
 export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
   const [notes, setNotes] = useState<Note[]>([]);
 
-  useEffect(() => {
-    const getNotes = async () => {
-      const noteArr = await getAllNotes();
+  const fetchNotes = async () => {
+    try {
+      const response = await fetch('/api/notes');
+      const data = await response.json();
 
-      if (noteArr) {
+      if (data.notes) {
         // sort notes by last updated date
-        noteArr.sort((a, b) => {
+        data.notes.sort((a: Note, b: Note) => {
           return (
             new Date(b.last_updated).getTime() -
             new Date(a.last_updated).getTime()
           );
         });
-        setNotes(noteArr);
+        setNotes(data.notes);
       }
-    };
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error fetching notes:', error);
+    }
+  };
 
-    getNotes();
+  const refreshNotes = async () => {
+    await fetchNotes();
+  };
+
+  useEffect(() => {
+    fetchNotes();
   }, []);
+  
   const value = {
     notes,
     setNotes,
+    refreshNotes,
   };
 
   return (

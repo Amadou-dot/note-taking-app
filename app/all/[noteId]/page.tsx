@@ -11,7 +11,7 @@ export default function NoteIdPage({ params }: Props) {
   const { notes } = useContext(NotesContext);
   const p = use(params);
   const id = p.noteId;
-  const note = notes[notes.findIndex((note) => note.id === Number(id))];
+  const note = notes[notes.findIndex((note) => note._id === id)];
 
   if (!note) return <div>That note does not exist</div>;
 

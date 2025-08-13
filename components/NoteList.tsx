@@ -13,7 +13,7 @@ export default function NoteList({ notes }: NoteListProps) {
       tabIndex={0}
     >
       {notes.map((note) => (
-        <NoteItem key={note.id} note={note} />
+        <NoteItem key={note._id} note={note} />
       ))}
     </ul>
   );

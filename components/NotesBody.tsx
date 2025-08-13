@@ -1,6 +1,6 @@
 'use client';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IoBulbOutline } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 
@@ -10,18 +10,14 @@ import RichTextEditor from './RichTextEditor';
 import TagSelector from './TagSelector';
 
 import { siteConfig } from '@/config/site';
+import { NotesContext } from '@/contexts/NotesContext';
 import { formatLastUpdated } from '@/helpers/formatLastUpdatedDate';
-import {
-  handleArchiveNote,
-  handleDeleteNote,
-  handleRestoreNote,
-  handleSaveNote,
-} from '@/helpers/notesDB';
 import { Note } from '@/types/Note';
+import { apiClient } from '@/helpers/apiClient';
 
 type NotesBodyProps = {
   className?: string;
-  note?: Note;
+  note?: Partial<Note>;
   onNoteChange?: (updatedNote: Partial<Note>) => void;
   readOnly?: boolean;
 };
@@ -32,6 +28,8 @@ export default function NotesBody({
   onNoteChange,
   readOnly = false,
 }: NotesBodyProps) {
+  const { refreshNotes } = useContext(NotesContext);
+  
   // Single note state instead of individual states
   const [noteState, setNoteState] = useState<Partial<Note>>({
     title: note?.title || '',
@@ -39,7 +37,7 @@ export default function NotesBody({
     tags: note?.tags || [],
     last_updated: note?.last_updated || new Date().toISOString(),
     isArchived: note?.isArchived || false,
-    id: note?.id,
+    _id: note?._id,
   });
 
   // Update state when note changes
@@ -51,7 +49,7 @@ export default function NotesBody({
         tags: note.tags || [],
         last_updated: note.last_updated,
         isArchived: note.isArchived,
-        id: note.id,
+        _id: note._id,
       });
     } else {
       setNoteState({
@@ -103,10 +101,11 @@ export default function NotesBody({
   let toReturn: React.ReactNode = null;
 
   if (note) {
-    const noteToHandle = { ...noteState, id: note.id };
+    const noteToHandle = { ...noteState, _id: note._id };
     const saveNote = async () => {
       try {
-        await handleSaveNote(noteToHandle);
+        await apiClient.updateNote(noteToHandle._id!, noteToHandle);
+        await refreshNotes(); // Refresh the notes list
         toast.success('Note saved successfully!');
       } catch {
         toast.error('Error saving note');
@@ -114,7 +113,8 @@ export default function NotesBody({
     };
     const archiveNote = async () => {
       try {
-        await handleArchiveNote(noteToHandle.id);
+        await apiClient.archiveNote(noteToHandle._id!);
+        await refreshNotes(); // Refresh the notes list
         toast.success('Note archived successfully!');
       } catch {
         toast.error('Error archiving note');
@@ -122,7 +122,8 @@ export default function NotesBody({
     };
     const restoreNote = async () => {
       try {
-        await handleRestoreNote(noteToHandle.id);
+        await apiClient.restoreNote(noteToHandle._id!);
+        await refreshNotes(); // Refresh the notes list
         toast.success('Note restored successfully!');
       } catch {
         toast.error('Error restoring note');
@@ -130,7 +131,8 @@ export default function NotesBody({
     };
     const deleteNote = async () => {
       try {
-        await handleDeleteNote(noteToHandle.id);
+        await apiClient.deleteNote(noteToHandle._id!);
+        await refreshNotes(); // Refresh the notes list
         toast.warning('Note deleted successfully!');
       } catch {
         toast.error('Error deleting note');
@@ -194,7 +196,11 @@ export default function NotesBody({
                   Last edited
                 </p>
                 <span>
-                  {note.last_updated && formatLastUpdated(note.last_updated)}
+                  {note.last_updated && formatLastUpdated(
+                    typeof note.last_updated === 'string' 
+                      ? note.last_updated 
+                      : (note.last_updated as Date).toISOString()
+                  )}
                 </span>
               </div>
             </div>
@@ -207,7 +213,7 @@ export default function NotesBody({
             />
           </div>
           <NoteActions
-            note={{ ...noteState, id: note.id } as Note}
+            note={{ ...noteState, _id: note._id } as Note}
             onArchive={archiveNote}
             onDelete={deleteNote}
             onRestore={restoreNote}

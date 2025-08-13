@@ -2,16 +2,18 @@
 
 import { Button } from '@heroui/button';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 
 import Bounded from '@/components/Bounded';
 import NotesBody from '@/components/NotesBody';
-import { handleCreateNote } from '@/helpers/notesDB';
+import { NotesContext } from '@/contexts/NotesContext';
+import { apiClient } from '@/helpers/apiClient';
 import { Note } from '@/types/Note';
 
 export default function CreatePage() {
+  const { refreshNotes } = useContext(NotesContext);
   const [note, setNote] = useState<Partial<Note>>({
     title: '',
     body: '',
@@ -24,13 +26,31 @@ export default function CreatePage() {
     setNote((prev) => ({
       ...prev,
       ...updatedFields,
-      last_updated: new Date().toDateString(),
+      last_updated: new Date().toISOString(),
     }));
   };
   const createNote = async () => {
     try {
-      await handleCreateNote(note);
+      // Ensure all required fields are present
+      const noteToCreate = {
+        title: note.title || '',
+        body: note.body || '',
+        tags: note.tags || [],
+        isArchived: note.isArchived || false,
+      };
+
+      await apiClient.createNote(noteToCreate);
+      await refreshNotes(); // Refresh the notes list
       toast.success('Note saved successfully!');
+      
+      // Reset the form
+      setNote({
+        title: '',
+        body: '',
+        tags: [],
+        last_updated: new Date().toISOString(),
+        isArchived: false,
+      });
     } catch {
       toast.error('Error saving note');
     }
@@ -61,7 +81,7 @@ export default function CreatePage() {
           </Button>
         </nav>
 
-        <NotesBody readOnly={false} onNoteChange={handleNoteChange} />
+        <NotesBody note={note} readOnly={false} onNoteChange={handleNoteChange} />
       </div>
     </Bounded>
   );

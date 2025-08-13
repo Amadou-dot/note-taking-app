@@ -31,7 +31,7 @@ export default function NoteItem({ note }: NoteItemProps) {
     day: '2-digit',
     year: 'numeric',
   }).format(new Date(note.last_updated));
-  const url = note.isArchived ? `/archive/${note.id}` : `/all/${note.id}`;
+  const url = note.isArchived ? `/archive/${note._id}` : `/all/${note._id}`;
 
   // Using client-side only textPreview to avoid hydration errors
   const [textPreview, setTextPreview] = React.useState<string>('');
